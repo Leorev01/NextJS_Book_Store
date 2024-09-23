@@ -16,7 +16,7 @@ const subheadings = [
 
 const Navbar = () => {
   return (
-    <nav className="h-[11rem] border-b-2 fixed flex flex-col pb-3">
+    <nav className="h-[11rem] border-b-2 fixed flex flex-col pb-3 z-5 bg-white">
       <div className='flex justify-between items-center'>
         <div className="flex flex-row items-center ml-3">
             <p className="hover:cursor-pointer hover:scale-110">
@@ -25,10 +25,10 @@ const Navbar = () => {
             <Image src={accountIcon} alt="account icon" width={50} height={50}/>
         </div>
         <h1 className="mr-4 text-4xl snap-center font-italiana shadow-lg shadow-red">
-          BOOKBUY
+          <Link href='/'>BOOKBUY</Link>
         </h1>
         <div className='mr-3 flex flex-row items-center gap-2'>
-          <Image src={basketIcon} alt="basket icon" width={30} height={30}/>
+          <Image className="w-auto h-auto" src={basketIcon} alt="basket icon" width={30} height={30}/>
           <p className="hover:cursor-pointer hover:scale-110">
             CART
           </p>
