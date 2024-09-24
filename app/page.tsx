@@ -25,7 +25,12 @@ export default function Home() {
         </Button>
         <Image src={magicBook} alt='magic book' className="relative sm:w-[14rem] md:w-[18rem] lg:w-[22rem] left-[60%] bottom-[10%]"/>
       </div>
-      <PageSection title='Bestsellers'/>
+      <div className="flex flex-col">
+        <PageSection title='Bestsellers'/>
+        <PageSection title='New'/>
+        <PageSection title='Fiction'/>
+        <PageSection title='Non-fiction'/>
+      </div>
     </section>
   );
 }
