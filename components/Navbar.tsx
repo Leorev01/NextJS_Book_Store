@@ -16,6 +16,7 @@ import LoginForm from "./LoginForm";
 const subheadings = [
   "Fiction",
   "Non-Fiction",
+  "All Books",
   "Events",
   "Shops",
   "Gifts",
@@ -26,7 +27,7 @@ const subheadings = [
 const Navbar = () => {
   return (
       <Dialog>
-      <nav className="h-[11rem] border-b-2 fixed flex flex-col pb-3 z-10 bg-white">
+      <nav className="h-[11rem] border-b-2 fixed flex flex-col pb-3 z-50 bg-white">
         <div className='flex justify-between items-center'>
           <Link href='/account'>
             <DialogTrigger className="flex flex-row items-center ml-3">
@@ -52,7 +53,13 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row w-screen justify-around mt-3 self-center ">
           {subheadings.map((subheading) => (
-            <Link href={`/${subheading}`} key={subheading}>
+            subheading === "All Books" ?
+            <Link href="all" key={subheading}>
+              <p className="hover:cursor-pointer hover:bg-gray-400 p-4 rounded-md">
+                {subheading}
+              </p>
+            </Link> :
+            <Link href={`/${subheading.toLowerCase()}`} key={subheading}>
               <p className="hover:cursor-pointer hover:bg-gray-400 p-4 rounded-md">{subheading}</p>
             </Link>
           ))}
