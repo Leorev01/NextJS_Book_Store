@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import PageSection from '@/components/PageSection';
+import PageSection from '@/components/BookSection';
 
 const page = () => {
 

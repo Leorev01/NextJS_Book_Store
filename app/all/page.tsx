@@ -1,4 +1,4 @@
-import PageSection from '@/components/PageSection'
+import PageSection from '@/components/BookSection'
 import React from 'react'
 
 const AllBooks = () => {

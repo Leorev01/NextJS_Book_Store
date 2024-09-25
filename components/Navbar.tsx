@@ -40,7 +40,7 @@ const Navbar = () => {
           <h1 className="mr-4 text-4xl snap-center font-italiana shadow-lg shadow-red">
             <Link href='/'>BOOKBUY</Link>
           </h1>
-          <div className='mr-3 flex flex-row items-center gap-2'>
+          <div className='mr-7 flex flex-row items-center gap-2'>
             <Image className="w-auto h-auto" src={basketIcon} alt="basket icon" width={30} height={30}/>
             <p className="hover:cursor-pointer hover:scale-110">
               CART

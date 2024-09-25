@@ -1,5 +1,5 @@
 'use client';
-import PageSection from "@/components/PageSection";
+import PageSection from "@/components/BookSection";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { redirect, useParams } from "next/navigation";

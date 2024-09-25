@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import magicBook from "@/public/images/magic_book.gif";
-import PageSection from "@/components/PageSection";
+import PageSection from "@/components/BookSection";
 
 
 export default function Home() {
