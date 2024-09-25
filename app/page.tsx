@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import magicBook from "@/public/images/magic_book.gif";
-import PageSection from "@/components/BookSection";
+import BookSection from "@/components/BookSection";
 
 
 export default function Home() {
@@ -25,13 +25,13 @@ export default function Home() {
         </Button>
         <Image src={magicBook} alt='magic book' className="relative sm:w-[14rem] md:w-[18rem] lg:w-[22rem] left-[50%] bottom-[10%]"/>
       </div>
-      <div className="flex flex-col">
-        <PageSection title='Bestsellers'/>
-        <PageSection title='New'/>
-        <PageSection title='Fiction'/>
-        <PageSection title='Non-fiction'/>
-        <PageSection title='Dystopian'/>
-        <PageSection title='Fantasy'/>
+      <div className="flex Fflex-col">
+        <BookSection title='Bestsellers'/>
+        <BookSection title='New'/>
+        <BookSection title='Fiction'/>
+        <BookSection title='Non-fiction'/>
+        <BookSection title='Dystopian'/>
+        <BookSection title='Fantasy'/>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 'use client';
-import PageSection from "@/components/BookSection";
+import BookSection from "@/components/BookSection";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
@@ -20,8 +20,8 @@ const Genre = () => {
         </Button>
       </Link>
       <div className="mt-[-5rem]">
-        <PageSection title='Bestsellers' genre={slug}/>
-        <PageSection title='New' genre={slug}/>
+        <BookSection title='Bestsellers' genre={slug}/>
+        <BookSection title='New' genre={slug}/>
       </div>
     </section>
   );

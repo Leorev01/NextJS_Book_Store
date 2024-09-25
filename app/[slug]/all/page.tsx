@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import PageSection from '@/components/BookSection';
+import BookSection from '@/components/BookSection';
 
 const page = () => {
 
@@ -14,7 +14,7 @@ const page = () => {
         <h1 className="text-2xl font-bold relative bottom-10">
             All {genre} books
         </h1>
-        <PageSection title='all' genre={genre}/>
+        <BookSection title='all' genre={genre}/>
     </section>
   )
 }

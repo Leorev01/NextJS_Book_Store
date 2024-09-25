@@ -15,7 +15,7 @@ type BookProp = {
     sold: number;
 };
 
-const PageSection = ({title, genre}: {title:string, genre?:string}) => {
+const BookSection = ({title, genre}: {title:string, genre?:string}) => {
     const [bookList, setBooks] = useState<BookProp[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -56,7 +56,7 @@ const PageSection = ({title, genre}: {title:string, genre?:string}) => {
   return (
     <section className='w-[97vw]'>
         {title !== 'all' && <h1 className='text-3xl font-bold ml-10 my-5'>{title}</h1>}
-        <div className='grid grid-cols-5'>
+        <div className='grid grid-cols-5 grid-flow-row'>
             <ClipLoader size={30} color="black" loading={isLoading}/>
             {bookList.map((book) => (
                 <PageBook key={book.name} book={book} />
@@ -67,4 +67,4 @@ const PageSection = ({title, genre}: {title:string, genre?:string}) => {
   )
 }
 
-export default PageSection
+export default BookSection

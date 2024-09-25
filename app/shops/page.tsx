@@ -4,7 +4,7 @@ import { shops } from "@/data/shops"
 const Shop = () => {
   return (
     <section className='pt-[11rem] flex flex-col items-center w-full'>
-      <div className='w-full h-0 border-x-[20rem] border-b-[3rem] border-transparent border-b-blue-100 rotate-180 mb-0'></div>
+      <div className='w-full h-0 border-x-[20rem] border-b-[3rem] border-transparent border-b-blue-200 rotate-180 mb-0'></div>
       <h1 className="text-2xl font-bold relative bottom-10">
         Shops
       </h1>
