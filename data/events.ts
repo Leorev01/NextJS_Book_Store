@@ -1,5 +1,6 @@
-export const events =[
+export const events = [
     {
+        "id": 1,
         "title": "Book Fair 2024",
         "date": "2024-04-15",
         "description": "Join us for the annual book fair featuring local authors, book signings, and workshops.",
@@ -7,6 +8,7 @@ export const events =[
         "image": "/assets/events/book_fair.jpeg"
     },
     {
+        "id": 2,
         "title": "Author Meet and Greet",
         "date": "2024-05-20",
         "description": "An exclusive event to meet bestselling author Jane Doe and discuss her latest novel.",
@@ -14,6 +16,7 @@ export const events =[
         "image": "/assets/events/meet_and_greet.jpg"
     },
     {
+        "id": 3,
         "title": "Children's Storytime",
         "date": "2024-06-10",
         "description": "A fun-filled storytime for children with interactive storytelling and crafts.",
@@ -21,6 +24,7 @@ export const events =[
         "image": "/assets/events/storytime_event.jpeg"
     },
     {
+        "id": 4,
         "title": "Literary Festival",
         "date": "2024-07-25",
         "description": "A weekend festival celebrating literature with panels, discussions, and performances.",
@@ -28,10 +32,11 @@ export const events =[
         "image": "/assets/events/literary_festival.webp"
     },
     {
+        "id": 5,
         "title": "Book Club Monthly Meeting",
         "date": "2024-08-15",
         "description": "Join our monthly book club to discuss this month's pick and enjoy refreshments.",
         "location": "Local Coffee Shop",
         "image": "/assets/events/book_club.jpeg"
     }
-]
+];

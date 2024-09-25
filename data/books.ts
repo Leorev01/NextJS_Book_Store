@@ -1,5 +1,6 @@
 export const books = [
-    {
+  {
+      "id": 1,
       "name": "The Great Gatsby",
       "image": "/assets/books/the_great_gatsby.jpg",
       "description": "A novel set in the Roaring Twenties that explores themes of wealth, love, and the American Dream.",
@@ -8,8 +9,9 @@ export const books = [
       "genre": "Classic",
       "sold": 150,
       "releaseDate": "1925-04-10" // April 10, 1925
-    },
-    {
+  },
+  {
+      "id": 2,
       "name": "1984",
       "image": "/assets/books/1984.jpeg",
       "description": "A dystopian novel that delves into totalitarianism and the dangers of a surveillance state.",
@@ -18,8 +20,9 @@ export const books = [
       "genre": "Dystopian",
       "sold": 200,
       "releaseDate": "1949-06-08" // June 8, 1949
-    },
-    {
+  },
+  {
+      "id": 3,
       "name": "To Kill a Mockingbird",
       "image": "/assets/books/to_kill_a_mockingbird.jpeg",
       "description": "A novel about the serious issues of race and rape, told through the eyes of a young girl in the South.",
@@ -28,8 +31,9 @@ export const books = [
       "genre": "Fiction",
       "sold": 180,
       "releaseDate": "1960-07-11" // July 11, 1960
-    },
-    {
+  },
+  {
+      "id": 4,
       "name": "Pride and Prejudice",
       "image": "/assets/books/pride_and_prejudice.jpg",
       "description": "A romantic novel that critiques the British landed gentry at the end of the 18th century.",
@@ -38,8 +42,9 @@ export const books = [
       "genre": "Romance",
       "sold": 220,
       "releaseDate": "1813-01-28" // January 28, 1813
-    },
-    {
+  },
+  {
+      "id": 5,
       "name": "The Catcher in the Rye",
       "image": "/assets/books/the_catcher_in_the_rye.jpg",
       "description": "A story about teenage angst and alienation, narrated by the iconic character Holden Caulfield.",
@@ -48,8 +53,9 @@ export const books = [
       "genre": "Fiction",
       "sold": 170,
       "releaseDate": "1951-07-16" // July 16, 1951
-    },
-    {
+  },
+  {
+      "id": 6,
       "name": "The Hobbit",
       "image": "/assets/books/the_hobbit.jpg",
       "description": "A fantasy novel that follows the journey of Bilbo Baggins as he discovers adventure and treasure.",
@@ -58,8 +64,9 @@ export const books = [
       "genre": "Fantasy",
       "sold": 300,
       "releaseDate": "1937-09-21" // September 21, 1937
-    },
-    {
+  },
+  {
+      "id": 7,
       "name": "Fahrenheit 451",
       "image": "/assets/books/fahrenheit_451.jpg",
       "description": "A dystopian novel about a future where books are banned and 'firemen' burn any that are found.",
@@ -68,8 +75,9 @@ export const books = [
       "genre": "Dystopian",
       "sold": 140,
       "releaseDate": "1953-10-08" // October 8, 1953
-    },
-    {
+  },
+  {
+      "id": 8,
       "name": "Moby Dick",
       "image": "/assets/books/moby_dick.jpg",
       "description": "A novel about the obsessive quest of Captain Ahab to seek revenge on Moby Dick, the giant white whale.",
@@ -78,8 +86,9 @@ export const books = [
       "genre": "Classic",
       "sold": 90,
       "releaseDate": "1851-07-03" // July 3, 1851
-    },
-    {
+  },
+  {
+      "id": 9,
       "name": "The Alchemist",
       "image": "/assets/books/the_alchemist.jpg",
       "description": "A philosophical book that tells the story of a shepherd named Santiago and his journey to find treasure.",
@@ -88,8 +97,9 @@ export const books = [
       "genre": "Adventure",
       "sold": 250,
       "releaseDate": "1988-05-01" // May 1, 1988
-    },
-    {
+  },
+  {
+      "id": 10,
       "name": "Brave New World",
       "image": "/assets/books/brave_new_world.jpg",
       "description": "A novel that explores a futuristic society driven by technological advancements and the loss of individuality.",
@@ -98,8 +108,9 @@ export const books = [
       "genre": "Dystopian",
       "sold": 160,
       "releaseDate": "1932-04-07" // April 7, 1932
-    },
-    {
+  },
+  {
+      "id": 11,
       "name": "The Night Circus",
       "image": "/assets/books/the_night_circus.jpg",
       "description": "A magical competition between two young illusionists at a mysterious circus that only opens at night.",
@@ -108,8 +119,9 @@ export const books = [
       "genre": "Fantasy",
       "sold": 130,
       "releaseDate": "2011-09-27" // September 27, 2011
-    },
-    {
+  },
+  {
+      "id": 12,
       "name": "The Road",
       "image": "/assets/books/the_road.jpg",
       "description": "A post-apocalyptic novel that follows a father and son as they navigate a desolate landscape.",
@@ -118,8 +130,9 @@ export const books = [
       "genre": "Fiction",
       "sold": 110,
       "releaseDate": "2006-03-07" // March 7, 2006
-    },
-    {
+  },
+  {
+      "id": 13,
       "name": "Sapiens: A Brief History of Humankind",
       "image": "/assets/books/sapiens.jpg",
       "description": "An exploration of the history of humanity from the Stone Age to the modern age.",
@@ -128,8 +141,9 @@ export const books = [
       "genre": "Non-Fiction",
       "sold": 300,
       "releaseDate": "2011-02-01" // February 1, 2011
-    },
-    {
+  },
+  {
+      "id": 14,
       "name": "Educated",
       "image": "/assets/books/educated.jpg",
       "description": "A memoir about a woman's quest for knowledge, breaking away from her survivalist family.",
@@ -138,8 +152,9 @@ export const books = [
       "genre": "Non-Fiction",
       "sold": 250,
       "releaseDate": "2018-02-20" // February 20, 2018
-    },
-    {
+  },
+  {
+      "id": 15,
       "name": "Becoming",
       "image": "/assets/books/becoming.jpg",
       "description": "The memoir of former First Lady Michelle Obama, detailing her life and experiences.",
@@ -148,5 +163,5 @@ export const books = [
       "genre": "Non-Fiction",
       "sold": 400,
       "releaseDate": "2018-11-13" // November 13, 2018
-    }
-  ];
+  }
+];
