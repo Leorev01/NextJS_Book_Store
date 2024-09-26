@@ -1,10 +1,13 @@
 'use client';
 
-import RegisterForm from "@/components/RegisterForm"
+import RegisterForm from "@/components/RegisterForm";
+
 
 const page = () => {
 
-  if(localStorage.user){
+  const user = localStorage.getItem('user');
+
+  if(user){
     return(
       <p>
         Account Page
