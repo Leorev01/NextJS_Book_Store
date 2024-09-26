@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import BookSection from '@/components/BookSection';
 
-const page = () => {
+const Page = () => {
 
   const path = usePathname();
   const genre = path?.split('/')[1];
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

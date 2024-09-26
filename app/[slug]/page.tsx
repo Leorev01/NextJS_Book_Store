@@ -2,7 +2,7 @@
 import BookSection from "@/components/BookSection";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { redirect, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 const Genre = () => {
   let { slug } = useParams();
