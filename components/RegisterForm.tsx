@@ -5,47 +5,51 @@ import Image from 'next/image';
 import githubLogo from '@/public/images/github.svg';
 import googleLogo from '@/public/images/google.png';
 import { FormEvent, useRef } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const RegisterForm = () => {
+
+  const router = useRouter();
 
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const password2 = useRef<HTMLInputElement>(null);
 
-  const submitHandler = async (e:FormEvent) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-
+  
     if (password.current?.value !== password2.current?.value) {
-        console.log('Passwords do not match');
-        return;
+      console.log('Passwords do not match');
+      return;
     }
-
+  
     try {
-        const response = await fetch('https://localhost:3000/api/add-user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: username.current?.value,
-                email: email.current?.value,
-                password: password.current?.value,
-            }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error:', errorData.error);
-        } else {
-            console.log('User registered successfully');
-            redirect('/');
-        }
+      const response = await fetch("http://localhost:3000/api/add-user", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',  // Ensure this header is set
+        },
+        body: JSON.stringify({
+          username: username.current?.value.trim(),
+          email: email.current?.value.trim(),
+          password: password.current?.value,
+        }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error:', errorData.error);
+      } else {
+        console.log('User registered successfully');
+        localStorage.setItem('user', (username.current?.value as string));
+        router.push('/');
+      }
     } catch (error) {
-        console.error('Fetch error:', error);
+      console.error('Fetch error:', error);
     }
-  }
+  };
+  
 
 
   return (
