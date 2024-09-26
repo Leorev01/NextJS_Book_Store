@@ -1,9 +1,9 @@
-import React from 'react'
+import LoginForm from "@/components/LoginForm"
 
 const page = () => {
   return (
-    <section>
-        <h1>Account Page</h1>
+    <section className='pt-[11rem]'>
+        <LoginForm/>
     </section>
   )
 }

@@ -6,12 +6,8 @@ import searchIcon from '@/public/images/search_icon.png';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import LoginForm from "./LoginForm";
 
 const subheadings = [
   "Fiction",
@@ -30,21 +26,23 @@ const Navbar = () => {
       <nav className="h-[11rem] border-b-2 fixed flex flex-col pb-3 z-50 bg-white">
         <div className='flex justify-between items-center'>
           <Link href='/account'>
-            <DialogTrigger className="flex flex-row items-center ml-3">
+            <div className="flex flex-row items-center ml-3">
                 <p className="hover:cursor-pointer hover:scale-110">
                   ACCOUNT
                 </p>
                 <Image src={accountIcon} alt="account icon" width={50} height={50}/>
-            </DialogTrigger>
+            </div>
           </Link>
           <h1 className="mr-4 text-4xl snap-center font-italiana shadow-lg shadow-red">
             <Link href='/'>BOOKBUY</Link>
           </h1>
           <div className='mr-7 flex flex-row items-center gap-2'>
-            <Image className="w-auto h-auto" src={basketIcon} alt="basket icon" width={30} height={30}/>
-            <p className="hover:cursor-pointer hover:scale-110">
-              CART
-            </p>
+            <DialogTrigger>
+              <Image className="w-auto h-auto" src={basketIcon} alt="basket icon" width={30} height={30}/>
+              <p className="hover:cursor-pointer hover:scale-110">
+                CART
+              </p>
+            </DialogTrigger>
           </div>
         </div>
         <div className="flex flex-row-reverse items-center mr-3 mt-4">
@@ -66,7 +64,7 @@ const Navbar = () => {
         </div>
       </nav>
       <DialogContent>
-        <LoginForm />
+        <h1>Yes bitch</h1>
       </DialogContent>
     </Dialog>
   )
