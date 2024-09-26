@@ -4,8 +4,50 @@ import { Label } from './ui/label'
 import Image from 'next/image';
 import githubLogo from '@/public/images/github.svg';
 import googleLogo from '@/public/images/google.png';
+import { FormEvent, useRef } from 'react';
+import { redirect } from 'next/navigation';
 
 const RegisterForm = () => {
+
+  const username = useRef<HTMLInputElement>(null);
+  const email = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
+  const password2 = useRef<HTMLInputElement>(null);
+
+  const submitHandler = async (e:FormEvent) => {
+    e.preventDefault();
+
+    if (password.current?.value !== password2.current?.value) {
+        console.log('Passwords do not match');
+        return;
+    }
+
+    try {
+        const response = await fetch('https://localhost:3000/api/add-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username.current?.value,
+                email: email.current?.value,
+                password: password.current?.value,
+            }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error:', errorData.error);
+        } else {
+            console.log('User registered successfully');
+            redirect('/');
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+  }
+
+
   return (
       <div className='flex flex-col w-[25rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
         <h1 className='text-2xl font-bold'>Create an account</h1>
@@ -30,25 +72,18 @@ const RegisterForm = () => {
                 </span>
             </div>
         </div>
-        
-        <div>
+        <form className='flex flex-col gap-2' onSubmit={(e)=>submitHandler(e)}>
             <Label htmlFor="username">Username</Label>
-            <Input type="username" id="username" placeholder="Username" />
-        </div>
-        <div>
+            <Input type="username" id="username" placeholder="Username" ref={username} required minLength={1}/>
             <Label htmlFor="email">Email</Label>
-            <Input type="email" id="email" placeholder="Email" />
-        </div>        
-        <div>
-           <Label htmlFor="password">Password</Label>
-            <Input type='password' id='password' placeholder='Password' /> 
-        </div>
-        <div>
-           <Label htmlFor="password2">Password</Label>
-            <Input type='password' id='password2' placeholder='Re-enter Password' /> 
-        </div>
+            <Input type="email" id="email" placeholder="Email" ref={email} required />
+            <Label htmlFor="password">Password</Label>
+            <Input type='password' id='password' placeholder='Password' ref={password} required minLength={6}/> 
+            <Label htmlFor="password2">Password</Label>
+            <Input type='password' id='password2' placeholder='Re-enter Password' ref={password2} required minLength={6}/> 
 
-        <Button>Register</Button>
+            <Button className='mt-2'>Register</Button>
+        </form>
         <p>Sign-in</p>
         <div>
 
