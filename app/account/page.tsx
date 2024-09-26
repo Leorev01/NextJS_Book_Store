@@ -5,7 +5,7 @@ import RegisterForm from "@/components/RegisterForm";
 
 const page = () => {
 
-  const user = localStorage.getItem('user');
+  /*const user = localStorage.getItem('user');
 
   if(user){
     return(
@@ -13,7 +13,7 @@ const page = () => {
         Account Page
       </p>
     )
-  }
+  }*/
   return (
     <section className='pt-[11rem] flex flex-col items-center'>
         <RegisterForm/>
