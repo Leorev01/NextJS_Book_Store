@@ -17,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "BookBuy",
   description: "The worlds #1 book retailer",
+  icons: {
+    icon: '/images/bookbuy_icon.png',
+  }
 };
 
 export default function RootLayout({
@@ -25,7 +28,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
   return (
     <html lang="en">
         <body

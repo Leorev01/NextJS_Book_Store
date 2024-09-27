@@ -6,11 +6,6 @@ import AccountUserPage from "@/components/AccountUserPage";
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 
-interface DecodedJWT {
-  name: string;
-  email: string;
-}
-
 const AccountPage = () => {
   const { data: session } = useSession();
   const [user, setUser] = useState<string | null>(null);
