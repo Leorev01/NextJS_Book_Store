@@ -2,9 +2,9 @@ import { FormEvent, useRef } from 'react';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
-import Image from 'next/image';
-import githubLogo from '@/public/images/github.svg';
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
+import GithubLoginButton from './GithubLoginButton';
+import GoogleLoginButton from './GoogleLoginButton';
 
 
 type Props = {
@@ -52,13 +52,8 @@ const LoginForm = ({ switchForm, onLoginSuccess, googleSuccess, googleError }: P
     <div className='flex flex-col w-[30rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
       <h1 className='text-2xl font-bold text-center'>Log in</h1>
       <div className='flex flex-row justify-between'>
-        <Button className='w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2'>
-          <Image src={githubLogo} alt='github logo' width={20} height={20} />
-          Github
-        </Button>
-        <div className='w-[47%]'>
-          <GoogleLogin onSuccess={googleSuccess} onError={googleError} />
-        </div>
+        <GithubLoginButton />
+        <GoogleLoginButton />
       </div>
 
       <div className='relative'>

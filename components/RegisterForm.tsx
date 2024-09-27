@@ -1,10 +1,10 @@
 import { Button } from './ui/button';
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import Image from 'next/image';
-import githubLogo from '@/public/images/github.svg';
 import { FormEvent, useRef } from 'react';
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
+import GithubLoginButton from './GithubLoginButton';
+import GoogleLoginButton from './GoogleLoginButton';
 
 type Props = {
   switchForm: () => void;
@@ -63,11 +63,8 @@ const RegisterForm = ({switchForm, onRegisterSuccess, googleSuccess, googleError
       <div className='flex flex-col w-[30rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
         <h1 className='text-2xl font-bold text-center'>Create an account</h1>
         <div className='flex flex-row justify-between'>
-           <Button className="w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
-                <Image src={githubLogo} alt='github logo' width={20} height={20}/>
-                Github
-            </Button>
-            <GoogleLogin onSuccess={googleSuccess} onError={googleError}/>
+           <GithubLoginButton />
+           <GoogleLoginButton />
         </div>
 
         <div className="relative">
