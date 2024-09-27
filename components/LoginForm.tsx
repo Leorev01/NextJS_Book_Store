@@ -5,14 +5,16 @@ import { Input } from './ui/input';
 import Image from 'next/image';
 import githubLogo from '@/public/images/github.svg';
 import { GoogleCredentialResponse, GoogleLogin } from '@react-oauth/google';
-import {jwtDecode} from 'jwt-decode';
 
-interface DecodedJWT {
-  name: string;
-  email: string;
-}
 
-const LoginForm = ({ switchForm, onLoginSuccess }: { switchForm: () => void; onLoginSuccess: () => void }) => {
+type Props = {
+  switchForm: () => void;
+  onLoginSuccess: () => void;
+  googleSuccess: (response: GoogleCredentialResponse) => void;
+  googleError: () => void;
+};
+
+const LoginForm = ({ switchForm, onLoginSuccess, googleSuccess, googleError }: Props) => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
@@ -45,25 +47,9 @@ const LoginForm = ({ switchForm, onLoginSuccess }: { switchForm: () => void; onL
     }
   };
 
-  const handleGoogleSuccess = (response: GoogleCredentialResponse) => {
-    // Decode the JWT and specify the structure of the decoded object
-    const userObject = jwtDecode<DecodedJWT>(response.credential as string);
-  
-    console.log('Google User Info: ', userObject);
-  
-    // Store the user name in localStorage
-    localStorage.setItem('user', userObject.name);
-  
-    // Call the onLoginSuccess callback
-    onLoginSuccess();
-  };
-  
-  const handleGoogleError = () => {
-    console.error('Google login failed');
-  };
 
   return (
-    <div className='flex flex-col w-[25rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
+    <div className='flex flex-col w-[30rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
       <h1 className='text-2xl font-bold text-center'>Log in</h1>
       <div className='flex flex-row justify-between'>
         <Button className='w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2'>
@@ -71,7 +57,7 @@ const LoginForm = ({ switchForm, onLoginSuccess }: { switchForm: () => void; onL
           Github
         </Button>
         <div className='w-[47%]'>
-          <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
+          <GoogleLogin onSuccess={googleSuccess} onError={googleError} />
         </div>
       </div>
 
