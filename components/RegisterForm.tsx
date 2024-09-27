@@ -5,11 +5,9 @@ import Image from 'next/image';
 import githubLogo from '@/public/images/github.svg';
 import googleLogo from '@/public/images/google.png';
 import { FormEvent, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 
-const RegisterForm = () => {
+const RegisterForm = ({switchForm, onRegisterSuccess}: {switchForm: () => void, onRegisterSuccess: ()=> void}) => {
 
-  const router = useRouter();
 
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
@@ -43,7 +41,8 @@ const RegisterForm = () => {
       } else {
         console.log('User registered successfully');
         localStorage.setItem('user', (username.current?.value as string));
-        router.push('/');
+        
+        onRegisterSuccess();
       }
     } catch (error) {
       console.error('Fetch error:', error);
@@ -54,7 +53,7 @@ const RegisterForm = () => {
 
   return (
       <div className='flex flex-col w-[25rem] border border-black rounded-3xl mt-5 p-10 gap-3'>
-        <h1 className='text-2xl font-bold'>Create an account</h1>
+        <h1 className='text-2xl font-bold text-center'>Create an account</h1>
         <div className='flex flex-row justify-between'>
            <Button className="w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
                 <Image src={githubLogo} alt='github logo' width={20} height={20}/>
@@ -88,7 +87,7 @@ const RegisterForm = () => {
 
             <Button className='mt-2'>Register</Button>
         </form>
-        <p>Sign-in</p>
+        <p onClick={switchForm} className='cursor-pointer hover:scale-110 duration-300 text-center'>Sign-in</p>
         <div>
 
         </div>

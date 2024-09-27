@@ -1,24 +1,39 @@
 'use client';
 
+import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
+import { useState, useEffect } from "react";
 
+const AccountPage = () => {
+  const [user, setUser] = useState<string | null>(null);
+  const [register, setRegister] = useState(true);
 
-const page = () => {
+  // Fetch user from localStorage after the component mounts
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    setUser(storedUser);
+  }, []);
 
-  /*const user = localStorage.getItem('user');
+  // Function to update the user after successful login
+  const handleLoginSuccess = () => {
+    const loggedInUser = localStorage.getItem('user');
+    setUser(loggedInUser); // Update user after login
+  };
 
-  if(user){
-    return(
-      <p>
-        Account Page
-      </p>
-    )
-  }*/
+  if (user) {
+    return (
+      <section className='pt-[11rem] flex flex-col items-center'>
+        <p>Welcome, {user}</p>
+      </section>
+    );
+  }
+
   return (
     <section className='pt-[11rem] flex flex-col items-center'>
-        <RegisterForm/>
+      {register && <RegisterForm switchForm={() => setRegister(false)} onRegisterSuccess={handleLoginSuccess}/>}
+      {!register && <LoginForm switchForm={() => setRegister(true)} onLoginSuccess={handleLoginSuccess} />}
     </section>
-  )
-}
+  );
+};
 
-export default page
+export default AccountPage;
