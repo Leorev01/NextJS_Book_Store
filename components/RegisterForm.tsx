@@ -9,12 +9,10 @@ import GoogleLoginButton from './GoogleLoginButton';
 type Props = {
   switchForm: () => void;
   onRegisterSuccess: () => void;
-  googleSuccess: (response: GoogleCredentialResponse) => void;
-  googleError: () => void;
 };
 
 
-const RegisterForm = ({switchForm, onRegisterSuccess, googleSuccess, googleError}: Props) => {
+const RegisterForm = ({switchForm, onRegisterSuccess}: Props) => {
 
 
   const username = useRef<HTMLInputElement>(null);
