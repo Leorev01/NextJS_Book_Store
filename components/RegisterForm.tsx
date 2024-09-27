@@ -59,7 +59,7 @@ const RegisterForm = ({switchForm, onRegisterSuccess}: {switchForm: () => void, 
                 <Image src={githubLogo} alt='github logo' width={20} height={20}/>
                 Github
             </Button>
-            <Button className="w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
+            <Button id='g_id_onload' className="w-[47%] text-blackborder gap-1 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
                 <Image src={googleLogo} alt='github logo' width={20} height={20}/>
                 Google
             </Button> 

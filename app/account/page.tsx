@@ -2,6 +2,7 @@
 
 import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
+import AccountUserPage from "@/components/AccountUserPage";
 import { useState, useEffect } from "react";
 
 const AccountPage = () => {
@@ -13,6 +14,7 @@ const AccountPage = () => {
     const storedUser = localStorage.getItem('user');
     setUser(storedUser);
   }, []);
+  
 
   // Function to update the user after successful login
   const handleLoginSuccess = () => {
@@ -20,16 +22,22 @@ const AccountPage = () => {
     setUser(loggedInUser); // Update user after login
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  }
+
   if (user) {
     return (
       <section className='pt-[11rem] flex flex-col items-center'>
-        <p>Welcome, {user}</p>
+        <AccountUserPage user={user} handleLogout={handleLogout} />
       </section>
     );
   }
 
   return (
     <section className='pt-[11rem] flex flex-col items-center'>
+      <script src="https://accounts.google.com/gsi/client" async></script>
       {register && <RegisterForm switchForm={() => setRegister(false)} onRegisterSuccess={handleLoginSuccess}/>}
       {!register && <LoginForm switchForm={() => setRegister(true)} onLoginSuccess={handleLoginSuccess} />}
     </section>

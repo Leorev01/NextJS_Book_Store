@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,14 +25,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
-      </body>
+      <GoogleOAuthProvider clientId={clientId}>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </GoogleOAuthProvider>
     </html>
   );
 }
