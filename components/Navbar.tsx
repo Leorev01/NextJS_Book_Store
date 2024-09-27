@@ -3,6 +3,7 @@ import Link from "next/link";
 import accountIcon from '@/public/images/account_icon.jpg';
 import basketIcon from '@/public/images/basket_icon.png';
 import searchIcon from '@/public/images/search_icon.png';
+import bookbuyLogo from '@/public/images/bookbuy_logo.png';
 import {
   Dialog,
   DialogContent,
@@ -33,10 +34,10 @@ const Navbar = () => {
                 <Image src={accountIcon} alt="account icon" width={50} height={50}/>
             </div>
           </Link>
-          <h1 className="mr-4 text-4xl snap-center font-italiana shadow-lg shadow-red">
-            <Link href='/'>BOOKBUY</Link>
-          </h1>
-          <div className='mr-7 flex flex-row items-center gap-2'>
+          <Link href='/'>
+            <Image src={bookbuyLogo} alt="bookbuy logo" width={200} height={200} className="mt-3" />
+          </Link>
+          <div className='mr-7 mt-2 flex flex-row items-center gap-2 pl-[8vw]'>
             <DialogTrigger>
               <Image className="w-auto h-auto" src={basketIcon} alt="basket icon" width={30} height={30}/>
               <p className="hover:cursor-pointer hover:scale-110">
