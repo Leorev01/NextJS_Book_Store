@@ -1,44 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { Button } from './ui/button';
 import { useSession } from 'next-auth/react';
 
 const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
   const { data: session, status } = useSession(); // Use useSession to get session data
-  const [loading, setLoading] = useState<boolean>(true); // Loading state
 
   useEffect(() => {
     // Set loading to false immediately after getting the session
     if (status !== 'loading') {
-      setLoading(false);
     }
   }, [status]);
 
-  // Show loading indicator while fetching user details
-  if (loading) {
-    return <div>Loading...</div>; // Customize this loading indicator as needed
-  }
-
-  // If session exists, extract user details
   const userDetails = session?.user;
 
+
+  // Show loading indicator while fetching user details
   if (!userDetails) {
-    return (
-      <section>
-        <h1>Welcome! Please log in to see your details.</h1>
-        <Button onClick={handleLogout}>Logout</Button>
-      </section>
-    );
+    return <div>User not found</div>; // Customize this loading indicator as needed
   }
 
+
   return (
-    <section>
+    <section className='text-center flex flex-col'>
       <h1>Welcome {userDetails.name}</h1>
-      <Button onClick={handleLogout}>Logout</Button>
-      <div>
-        <h1>Profile</h1>
-        <p>Name: {userDetails.name}</p>
-        <p>Email: {userDetails.email}</p>
+      <Button className='w-min self-center' onClick={handleLogout}>Logout</Button>
+      <div className='self-center flex flex-col mt-10 w-[20rem]'>
+        <h1 className='text-3xl mb-3'>Profile</h1>
+        {/*eslint-disable-next-line @next/next/no-img-element*/}
+        <img src={userDetails.image as string} alt={"profile image"} width={50} height={50} className='self-center'/>
+        <p className='self-start'>Name: <strong>{userDetails.name}</strong></p>
+        <p className='self-start'>Email: <strong>{userDetails.email}</strong></p>        
       </div>
+
+      <div className='flex flex-row mt-10 w-[100vw] justify-evenly'>
+        <div>
+          <h1 className='text-3xl mb-3'>Orders</h1>
+          <p>Orders will be displayed here</p>
+        </div>
+        <div>
+          <h1 className='text-3xl mb-3'>Cart</h1>
+          <p>Cart will be displayed here</p>
+        </div>
+      </div>      
+
     </section>
   );
 };
