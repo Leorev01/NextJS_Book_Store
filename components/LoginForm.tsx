@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
@@ -8,10 +8,10 @@ import GoogleLoginButton from './GoogleLoginButton';
 
 type Props = {
   switchForm: () => void;
-  onLoginSuccess: () => void;
+  setUser: Dispatch<SetStateAction<string | null>>;
 };
 
-const LoginForm = ({ switchForm, onLoginSuccess}: Props) => {
+const LoginForm = ({ switchForm, setUser}: Props) => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
@@ -35,9 +35,9 @@ const LoginForm = ({ switchForm, onLoginSuccess}: Props) => {
       } else {
         console.log('User logged in successfully');
         const responseData = await response.json();
-        const user = responseData.user.username;
+        const user = responseData.username;
         localStorage.setItem('user', user);
-        onLoginSuccess();
+        setUser(user);
       }
     } catch (error) {
       console.log(error);

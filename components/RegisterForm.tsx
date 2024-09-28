@@ -1,23 +1,24 @@
 import { Button } from './ui/button';
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import { FormEvent, useRef } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
 
 type Props = {
   switchForm: () => void;
-  onRegisterSuccess: () => void;
+  setUser: Dispatch<SetStateAction<string | null>>;
 };
 
 
-const RegisterForm = ({switchForm, onRegisterSuccess}: Props) => {
+const RegisterForm = ({switchForm, setUser}: Props) => {
 
 
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const password2 = useRef<HTMLInputElement>(null);
+  
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -47,7 +48,7 @@ const RegisterForm = ({switchForm, onRegisterSuccess}: Props) => {
         console.log('User registered successfully');
         localStorage.setItem('user', (username.current?.value as string));
         
-        onRegisterSuccess();
+        setUser(username.current?.value as string);
       }
     } catch (error) {
       console.error('Fetch error:', error);

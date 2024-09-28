@@ -5,46 +5,59 @@ import RegisterForm from "@/components/RegisterForm";
 import AccountUserPage from "@/components/AccountUserPage";
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { PacmanLoader } from "react-spinners";
 
 const AccountPage = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [user, setUser] = useState<string | null>(null);
   const [register, setRegister] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch user from localStorage after the component mounts
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    setUser(storedUser);
-  }, []);
-  
+    setUser(storedUser); // Set user directly from localStorage
+    setIsLoading(false); // Set loading to false after fetching the user
+  }, [user]);
+
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('user');
-    signOut(); // Sign out of next-auth
+    if(session){
+      signOut(); // Sign out of next-auth
+    }
   };
 
-  // Conditionally render the UI based on user session
-  if (user || session) {
+  // Show loading spinner while waiting for session status
+  if (status === "loading" || isLoading) {
     return (
-      <section className='pt-[11rem] flex flex-col items-center'>
-        <AccountUserPage user={user || session?.user?.name as string} handleLogout={handleLogout} />
-      </section>
+      <div className="flex justify-center items-center h-screen">
+        <PacmanLoader color="#36d7b7" />
+      </div>
     );
   }
 
+  // Check if the user is authenticated
+  const isAuthenticated = user || (session && session.user);
+
   return (
     <section className='pt-[11rem] flex flex-col items-center'>
-      <script src="https://accounts.google.com/gsi/client" async></script>
-      {register ? (
-        <RegisterForm 
-          switchForm={() => setRegister(false)} 
-          onRegisterSuccess={() => setUser(localStorage.getItem('user'))} 
-        />
+      {isAuthenticated ? (
+        <AccountUserPage handleLogout={handleLogout} />
       ) : (
-        <LoginForm 
-          switchForm={() => setRegister(true)} 
-          onLoginSuccess={() => setUser(localStorage.getItem('user'))} 
-        />
+        <>
+          {register ? (
+            <RegisterForm 
+              switchForm={() => setRegister(false)} 
+              setUser={setUser} 
+            />
+          ) : (
+            <LoginForm 
+              switchForm={() => setRegister(true)} 
+              setUser={setUser} 
+            />
+          )}
+        </>
       )}
     </section>
   );
