@@ -1,7 +1,7 @@
 export const books = [
   {
       "id": 1,
-      "name": "The Great Gatsby",
+      "title": "The Great Gatsby",
       "image": "/assets/books/the_great_gatsby.jpg",
       "description": "A novel set in the Roaring Twenties that explores themes of wealth, love, and the American Dream.",
       "price": 10.99,
@@ -12,8 +12,8 @@ export const books = [
   },
   {
       "id": 2,
-      "name": "1984",
-      "image": "/assets/books/1984.jpeg",
+      "title": "1984",
+      "image": "/assets/books/1984.jpg",
       "description": "A dystopian novel that delves into totalitarianism and the dangers of a surveillance state.",
       "price": 8.99,
       "author": "George Orwell",
@@ -23,7 +23,7 @@ export const books = [
   },
   {
       "id": 3,
-      "name": "To Kill a Mockingbird",
+      "title": "To Kill a Mockingbird",
       "image": "/assets/books/to_kill_a_mockingbird.jpeg",
       "description": "A novel about the serious issues of race and rape, told through the eyes of a young girl in the South.",
       "price": 12.99,
@@ -34,7 +34,7 @@ export const books = [
   },
   {
       "id": 4,
-      "name": "Pride and Prejudice",
+      "title": "Pride and Prejudice",
       "image": "/assets/books/pride_and_prejudice.jpg",
       "description": "A romantic novel that critiques the British landed gentry at the end of the 18th century.",
       "price": 9.99,
@@ -45,7 +45,7 @@ export const books = [
   },
   {
       "id": 5,
-      "name": "The Catcher in the Rye",
+      "title": "The Catcher in the Rye",
       "image": "/assets/books/the_catcher_in_the_rye.jpg",
       "description": "A story about teenage angst and alienation, narrated by the iconic character Holden Caulfield.",
       "price": 11.99,
@@ -56,7 +56,7 @@ export const books = [
   },
   {
       "id": 6,
-      "name": "The Hobbit",
+      "title": "The Hobbit",
       "image": "/assets/books/the_hobbit.jpg",
       "description": "A fantasy novel that follows the journey of Bilbo Baggins as he discovers adventure and treasure.",
       "price": 14.99,
@@ -67,7 +67,7 @@ export const books = [
   },
   {
       "id": 7,
-      "name": "Fahrenheit 451",
+      "title": "Fahrenheit 451",
       "image": "/assets/books/fahrenheit_451.jpg",
       "description": "A dystopian novel about a future where books are banned and 'firemen' burn any that are found.",
       "price": 9.49,
@@ -78,7 +78,7 @@ export const books = [
   },
   {
       "id": 8,
-      "name": "Moby Dick",
+      "title": "Moby Dick",
       "image": "/assets/books/moby_dick.jpg",
       "description": "A novel about the obsessive quest of Captain Ahab to seek revenge on Moby Dick, the giant white whale.",
       "price": 13.50,
@@ -89,7 +89,7 @@ export const books = [
   },
   {
       "id": 9,
-      "name": "The Alchemist",
+      "title": "The Alchemist",
       "image": "/assets/books/the_alchemist.jpg",
       "description": "A philosophical book that tells the story of a shepherd named Santiago and his journey to find treasure.",
       "price": 15.99,
@@ -100,7 +100,7 @@ export const books = [
   },
   {
       "id": 10,
-      "name": "Brave New World",
+      "title": "Brave New World",
       "image": "/assets/books/brave_new_world.jpg",
       "description": "A novel that explores a futuristic society driven by technological advancements and the loss of individuality.",
       "price": 10.50,
@@ -111,7 +111,7 @@ export const books = [
   },
   {
       "id": 11,
-      "name": "The Night Circus",
+      "title": "The Night Circus",
       "image": "/assets/books/the_night_circus.jpg",
       "description": "A magical competition between two young illusionists at a mysterious circus that only opens at night.",
       "price": 13.99,
@@ -122,7 +122,7 @@ export const books = [
   },
   {
       "id": 12,
-      "name": "The Road",
+      "title": "The Road",
       "image": "/assets/books/the_road.jpg",
       "description": "A post-apocalyptic novel that follows a father and son as they navigate a desolate landscape.",
       "price": 12.50,
@@ -133,7 +133,7 @@ export const books = [
   },
   {
       "id": 13,
-      "name": "Sapiens: A Brief History of Humankind",
+      "title": "Sapiens: A Brief History of Humankind",
       "image": "/assets/books/sapiens.jpg",
       "description": "An exploration of the history of humanity from the Stone Age to the modern age.",
       "price": 18.99,
@@ -144,7 +144,7 @@ export const books = [
   },
   {
       "id": 14,
-      "name": "Educated",
+      "title": "Educated",
       "image": "/assets/books/educated.jpg",
       "description": "A memoir about a woman's quest for knowledge, breaking away from her survivalist family.",
       "price": 16.99,
@@ -155,7 +155,7 @@ export const books = [
   },
   {
       "id": 15,
-      "name": "Becoming",
+      "title": "Becoming",
       "image": "/assets/books/becoming.jpg",
       "description": "The memoir of former First Lady Michelle Obama, detailing her life and experiences.",
       "price": 20.00,

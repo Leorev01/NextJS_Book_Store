@@ -7,7 +7,7 @@ import { ClipLoader } from 'react-spinners';
 
 type BookProp = {
     id: number;
-    name: string;
+    title: string;
     image: string;
     description: string;
     price: number;
@@ -61,7 +61,7 @@ const BookSection = ({title, genre}: {title:string, genre?:string}) => {
         <div className='grid grid-cols-5'>
             <ClipLoader size={30} color="black" loading={isLoading}/>
             {bookList.map((book) => (
-                <PageBook key={book.name} book={book} />
+                <PageBook key={book.title} book={book} />
             ))}
         </div>
         

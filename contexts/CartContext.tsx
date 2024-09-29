@@ -3,7 +3,7 @@
 import { useState, createContext, ReactNode } from 'react';
 
 // Define the bookItem type
-type bookItem = {
+type cartItem = {
   id: number;
   title: string;
   price: number;
@@ -12,7 +12,7 @@ type bookItem = {
 
 type itemType = {
     id: number;
-    name: string;
+    title: string;
     image?: string;
     description?: string;
     price: number;
@@ -24,15 +24,17 @@ type itemType = {
 
 // Context for sharing the cart and addItem function
 interface CartContextProps {
-  cart: bookItem[];
+  cart: cartItem[];
   addItem: (item: itemType) => void;
+  removeItem: (id:number) => void;
+  clearCart: () => void;
 }
 
 // Create a Cart Context
 export const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cart, setCart] = useState<bookItem[]>([]);
+  const [cart, setCart] = useState<cartItem[]>([]);
 
   // Function to add or update items in the cart
   const addItem = (item:itemType) => {
@@ -47,7 +49,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
       } else {
         return [...prevCart, {
             id:item.id,
-            title:item.name,
+            title:item.title,
             price:item.price,
             amount: 1
         }];
@@ -55,8 +57,31 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const removeItem = (itemId: number) => {
+    setCart((prevCart) => {
+      // Map through the previous cart to create a new array
+      return prevCart.map((cartItem) => {
+        if (cartItem.id === itemId) {
+          // If the item to remove is found and its amount is greater than 1, decrease the amount
+          if (cartItem.amount > 1) {
+            return { ...cartItem, amount: cartItem.amount - 1 };
+          }
+          // If the item amount is 1, we can remove it by returning null or not returning it
+          return null; // Or handle it differently as needed
+        }
+        // Return the cart item unchanged
+        return cartItem;
+      }).filter((item) => item !== null) as cartItem[];
+    });
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  }
+  
+
   return (
-    <CartContext.Provider value={{ cart, addItem }}>
+    <CartContext.Provider value={{ cart, addItem, removeItem, clearCart }}>
       {children}
     </CartContext.Provider>
   );
