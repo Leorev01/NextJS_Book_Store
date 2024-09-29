@@ -1,14 +1,16 @@
 import Image from 'next/image';
-import { Button } from './ui/button';
+import AddButton from './AddButton';
 
 type bookProp = {
-    name: string,
-    image: string,
-    description: string,
-    price: number,
-    author: string,
-    genre: string,
-    sold: number
+    id: number;
+    name: string;
+    image: string;
+    description: string;
+    price: number;
+    author: string;
+    genre: string;
+    sold: number;
+    releaseDate: string;
 }
 
 const PageBook = ({ book }: { book: bookProp }) => {
@@ -19,7 +21,7 @@ const PageBook = ({ book }: { book: bookProp }) => {
                 <p className='text-center'>{book.name}</p>
                 <p className='font-bold'>£{book.price.toFixed(2)}</p>
             </div>
-            <Button className='mt-auto'>Add</Button> {/* Use mt-auto to push the button to the bottom */}
+            <AddButton item={book}/>
         </div>
     )
 }

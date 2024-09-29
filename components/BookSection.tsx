@@ -6,6 +6,7 @@ import {books} from '@/data/books';
 import { ClipLoader } from 'react-spinners';
 
 type BookProp = {
+    id: number;
     name: string;
     image: string;
     description: string;
@@ -13,6 +14,7 @@ type BookProp = {
     author: string;
     genre: string;
     sold: number;
+    releaseDate: string;
 };
 
 const BookSection = ({title, genre}: {title:string, genre?:string}) => {

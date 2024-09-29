@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import Cart from "./Cart";
 
 const subheadings = [
   "Fiction",
@@ -64,8 +65,8 @@ const Navbar = () => {
           ))}
         </div>
       </nav>
-      <DialogContent>
-        <h1>Yes bitch</h1>
+      <DialogContent className="bg-white">
+        <Cart />
       </DialogContent>
     </Dialog>
   )
