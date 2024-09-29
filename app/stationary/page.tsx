@@ -12,7 +12,7 @@ const StationaryPage = () => {
         </h1>
         <div className="grid grid-cols-5 grid-flow-dense justify-evenly w-screen gap-20 px-10">
             {stationary.map((item) => (
-                <StationaryItem key={item.name} stationary={item} />
+                <StationaryItem key={item.title} stationary={item} />
             ))}
         </div>
         
