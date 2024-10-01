@@ -14,13 +14,13 @@ type itemType = {
     releaseDate?: string;
 }
 
-const AddButton = ({item}: {item: itemType}) => {
+const AddButton = ({item, classes}: {item: itemType, classes?: string}) => {
 
     const cartContext = useContext(CartContext);
     const { addItem } = cartContext!;
 
   return (
-    <Button onClick={()=>addItem(item)} className='mt-auto'>Add</Button> 
+    <Button onClick={()=>addItem(item)} className={classes?classes:'mt-auto'}>Add</Button> 
   )
 }
 
