@@ -4,6 +4,8 @@ import { CartContext } from '@/contexts/CartContext';
 import { useContext } from 'react';
 import CartItem from './CartItem';
 import { Button } from './ui/button';
+import Link from 'next/link';
+import { DialogClose } from './ui/dialog';
 
 const Cart = () => {
 
@@ -32,7 +34,7 @@ const Cart = () => {
             </ul>
             <div className='flex justify-around'>
                 <Button onClick={clearCart}>Clear</Button>
-                <Button>Checkout</Button>
+                <Link href='/checkout'><DialogClose><Button>Checkout</Button></DialogClose></Link>
             </div>
             <p>Total: £{cartTotal.toFixed(2)}</p>
         </div>

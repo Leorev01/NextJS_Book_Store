@@ -16,7 +16,7 @@ const CartItem = ({item}: {item: ItemProp}) => {
 
     return (
         <li className="flex flex-row justify-between items-center">
-            <p>{item.title} - £{item.price}</p>
+            <p>{item.title} - £{item.price.toFixed(2)}</p>
             <div className="flex flex-row gap-5 items-center">
     <           Button onClick={()=>removeItem(item.id)}> - </Button>
                 <p>{item.amount}</p>

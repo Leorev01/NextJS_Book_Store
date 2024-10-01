@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import magicBook from "@/public/images/magic_book.gif";
 import BookSection from "@/components/BookSection";
+import EventsSection from "@/components/EventsSection";
+import { events } from "@/data/events";
 
 
 export default function Home() {
@@ -28,6 +30,11 @@ export default function Home() {
       <div className="flex flex-col">
         <BookSection title='Bestsellers'/>
         <BookSection title='New'/>
+        <h1 className='text-3xl font-bold ml-10 my-5'>Events</h1>
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mx-5">
+          <EventsSection event={events[0]}/>
+          <EventsSection event={events[1]}/>
+        </div>
         <BookSection title='Fiction'/>
         <BookSection title='Non-fiction'/>
         <BookSection title='Dystopian'/>
