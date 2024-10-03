@@ -30,7 +30,7 @@ const CheckoutPage = () => {
     const city = useRef<HTMLInputElement>(null);
     const postCode = useRef<HTMLInputElement>(null);
     const router = useRouter();
-    const user = session!.user!.name;
+    const user = session?.user?.name;
 
     const submitHandler = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -82,38 +82,40 @@ const CheckoutPage = () => {
         }
     }
     if(!user){
-        router.push('/login')
+        router.push('/account')
     }
+    if(user){
+        if (cart.length === 0) {
+            return(
+            <section className='pt-[11rem] text-center'>
+                <h1 className='text-2xl font-bold'>Cart is empty, add items to cart before checking out</h1> 
+            </section>)
+        }
 
-    if (cart.length === 0) {
-        return(
-        <section className='pt-[11rem] text-center'>
-            <h1 className='text-2xl font-bold'>Cart is empty, add items to cart before checking out</h1> 
-        </section>)
+    return (
+        <section className='pt-[11rem] items-center flex flex-col gap-10'>
+            <h1 className='text-3xl font-bold'>Checkout</h1>
+            <ul>
+                {cart.map((item:ItemProp) => (
+                    <li key={item.id} className="text-xl">
+                        {item.title}: <strong>£{item.price}</strong> x <strong>{item.amount}</strong>
+                    </li>
+                ))}
+            </ul>
+            <p className="text-2xl">Total: <strong>£{cartTotal}</strong></p>
+            <form onSubmit={submitHandler} className="flex flex-col gap-4 w-[30rem]">
+                <Label htmlFor="address">Address</Label>
+                <Input type="text" id="address" placeholder="Enter your address" ref={address} required/>
+                <Label htmlFor="city">City</Label>
+                <Input type="text" id="city" placeholder="Enter your city" ref={city} required/>
+                <Label htmlFor="post code">Post code</Label>
+                <Input type="text" id="post code" placeholder="Enter your post code" ref={postCode} required/>
+                <Button>Order</Button>
+            </form>
+        </section>
+    )
     }
-
-  return (
-    <section className='pt-[11rem] items-center flex flex-col gap-10'>
-        <h1 className='text-3xl font-bold'>Checkout</h1>
-        <ul>
-            {cart.map((item:ItemProp) => (
-                <li key={item.id} className="text-xl">
-                    {item.title}: <strong>£{item.price}</strong> x <strong>{item.amount}</strong>
-                </li>
-            ))}
-        </ul>
-        <p className="text-2xl">Total: <strong>£{cartTotal}</strong></p>
-        <form onSubmit={submitHandler} className="flex flex-col gap-4 w-[30rem]">
-            <Label htmlFor="address">Address</Label>
-            <Input type="text" id="address" placeholder="Enter your address" ref={address} required/>
-            <Label htmlFor="city">City</Label>
-            <Input type="text" id="city" placeholder="Enter your city" ref={city} required/>
-            <Label htmlFor="post code">Post code</Label>
-            <Input type="text" id="post code" placeholder="Enter your post code" ref={postCode} required/>
-            <Button>Order</Button>
-        </form>
-    </section>
-  )
+    
 }
 
 export default CheckoutPage
