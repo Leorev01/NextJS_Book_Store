@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import accountIcon from '@/public/images/account_icon.jpg';
 import basketIcon from '@/public/images/basket_icon.png';
-import searchIcon from '@/public/images/search_icon.png';
 import bookbuyLogo from '@/public/images/bookbuy_logo.png';
 import {
   Dialog,
@@ -10,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import Cart from "./Cart";
+import SearchBar from "./SearchBar";
 
 const subheadings = [
   "Fiction",
@@ -47,10 +47,7 @@ const Navbar = () => {
             </DialogTrigger>
           </div>
         </div>
-        <div className="flex flex-row-reverse items-center mr-3 mt-4">
-          <Image src={searchIcon} alt="search icon" width={20} height={20} className="absolute mr-2"/>
-          <input placeholder="Search" maxLength={40} className="pl-3 outline-none border-2 border-black rounded-3xl w-[23rem] shadow-lg shadow-gray-500"/>
-        </div>
+        <SearchBar/>
         <div className="flex flex-row w-screen justify-around mt-3 self-center ">
           {subheadings.map((subheading) => (
             subheading === "All Books" ?

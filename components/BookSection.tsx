@@ -56,8 +56,8 @@ const BookSection = ({ title, genre }: { title: string; genre?: string }) => {
     };
 
     const childVariants = {
-        hidden: { opacity: 0, scale: 0.5 }, // Move the children down initially
-        show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }, // Animate to normal position
+        hidden: { opacity: 0, scale: 0.5 }, 
+        show: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
     };
 
     return (
