@@ -18,10 +18,16 @@ const SearchBar = () => {
         router.push('/search/'+searchValue?.toLowerCase())
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+          searchHandler(); // Call searchHandler if 'Enter' is pressed
+      }
+    };
+
   return (
     <div className="flex flex-row-reverse items-center mr-5 mt-4">
           <Image onClick={searchHandler} src={searchIcon} alt="search icon" width={20} height={20} className="absolute mr-2 hover:scale-110 duration-200 cursor-pointer"/>
-          <input placeholder="Search" maxLength={40} ref={searchRef} 
+          <input placeholder="Search" maxLength={40} ref={searchRef} onKeyDown={handleKeyDown}
           className="pl-3 outline-none border-2 border-black rounded-3xl w-[23rem] shadow-lg shadow-gray-500"/>
         </div>
   )
