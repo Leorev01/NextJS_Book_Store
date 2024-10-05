@@ -27,7 +27,7 @@ const BookPage = () => {
     }
 
   return (
-    <section className="pt-[11rem] flex flex-row h-screen items-center justify-evenly">
+    <section className="pt-[11rem] flex flex-row max-sm:flex-col h-screen items-center justify-evenly">
         <motion.img
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
