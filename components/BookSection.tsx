@@ -64,7 +64,7 @@ const BookSection = ({ title, genre }: { title: string; genre?: string }) => {
         <section className='w-[97vw]'>
             {title !== 'all' && <h1 className='text-3xl font-bold ml-10 my-5'>{title}</h1>}
             <motion.div
-                className='grid grid-cols-5 gap-4'
+                className='grid lg:grid-cols-5 md:grid-cols-4 grid-cols-3 gap-4 '
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
