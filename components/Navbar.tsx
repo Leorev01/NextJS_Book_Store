@@ -63,7 +63,7 @@ const Navbar = () => {
         </div>
       </nav>
       <DialogContent className="bg-white">
-        <Cart />
+        <Cart profile={false}/>
       </DialogContent>
     </Dialog>
   )

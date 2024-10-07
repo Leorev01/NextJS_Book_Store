@@ -11,7 +11,7 @@ type stationaryType = {
 
 const StationaryItem = ({ stationary }: { stationary: stationaryType}) => {
   return (
-    <div className="flex flex-col items-center bg-red-200 p-2 min-w-[10rem] justify-between rounded-md">
+    <div className="flex flex-col items-center bg-red-200 p-2 min-w-[10rem] justify-between rounded-md hover:scale-105">
         <Link href={`/stationary/${stationary.id}`} className='text-center'>
           <Image src={stationary.image} alt={stationary.title} width={200} height={200} />
           <h1 className="font-bold">{stationary.title}</h1>

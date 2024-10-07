@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 import Link from 'next/link';
 import { DialogClose } from './ui/dialog';
 
-const Cart = () => {
+const Cart = ({profile}:{profile: boolean}) => {
 
     const cartContext = useContext(CartContext);
 
@@ -26,17 +26,18 @@ const Cart = () => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='self-center text-xl font-bold'>Cart</h1>
+            {!profile && <h1 className='self-center text-xl font-bold'>Cart</h1>}
             <ul className='flex flex-col gap-2'>
                 {cart.map((item) => (
-                    <CartItem key={item.id} item={item}/>
+                    <CartItem key={item.id} item={item} profile={profile}/>
                 ))}
             </ul>
+            <p className='self-center font-semibold'>Total: £{cartTotal.toFixed(2)}</p>
             <div className='flex justify-around'>
                 <Button onClick={clearCart}>Clear</Button>
-                <Link href='/checkout'><DialogClose><Button>Checkout</Button></DialogClose></Link>
+                {!profile && <Link href='/checkout'><DialogClose><Button>Checkout</Button></DialogClose></Link>}
+                {profile && <Link href='/checkout'><Button>Checkout</Button></Link>}
             </div>
-            <p>Total: £{cartTotal.toFixed(2)}</p>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect} from 'react';
 import { Button } from './ui/button';
 import { useSession } from 'next-auth/react';
+import Cart from './Cart';
 
 const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
   const { data: session, status } = useSession(); // Use useSession to get session data
@@ -39,7 +40,7 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
         </div>
         <div>
           <h1 className='text-3xl mb-3'>Cart</h1>
-          <p>Cart will be displayed here</p>
+          <Cart profile={true}/>
         </div>
       </div>      
 

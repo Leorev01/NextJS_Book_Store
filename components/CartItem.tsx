@@ -9,18 +9,28 @@ type ItemProp = {
   amount: number;
 };
 
-const CartItem = ({item}: {item: ItemProp}) => {
+const CartItem = ({item, profile}: {item: ItemProp, profile:boolean}) => {
 
     const cartContext = useContext(CartContext);
     const {addItem, removeItem} = cartContext!;
 
     return (
         <li className="flex flex-row justify-between items-center">
-            <p>{item.title} - £{item.price.toFixed(2)}</p>
+            {!profile && <p>{item.title} - £{item.price.toFixed(2)}</p>}
+            {profile && (
+                <>
+                    <p>{item.title.slice(0,15)}...</p>
+                    <p>- £{item.price.toFixed(2)} X {item.amount}</p>
+                </>
+                )}
             <div className="flex flex-row gap-5 items-center">
-    <           Button onClick={()=>removeItem(item.id)}> - </Button>
-                <p>{item.amount}</p>
-                <Button onClick={()=>{addItem(item)}}> + </Button>
+               {!profile && 
+               <>
+                <Button onClick={()=>removeItem(item.id)}> - </Button>
+                    <p>{item.amount}</p>
+                    <Button onClick={()=>{addItem(item)}}> + </Button>
+                </>
+                }
             </div>
             
         </li>
