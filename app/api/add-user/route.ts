@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await sql`INSERT INTO users (username, email, password, accountType) VALUES (${username}, ${email}, ${hashedPassword}, ${'default'});`;
-
+    
     const message = `User: ${username} created successfully`;
     return NextResponse.json({ message }, { status: 200 });
   } catch (error) {

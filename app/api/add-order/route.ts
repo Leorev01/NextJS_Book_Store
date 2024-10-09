@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing credentials' }, { status: 400 });
     }
 
-    await sql`INSERT INTO orders (userId, address, city, postCode, totalAmount) VALUES (${userId}, ${address}, ${city}, ${postCode}, ${totalAmount});`;
+    await sql`INSERT INTO orders ("userId", address, city, postCode, totalAmount) VALUES (${userId}, ${address}, ${city}, ${postCode}, ${totalAmount});`;
 
     const message = 'Order created succesfully';
     return NextResponse.json({ message }, { status: 200 });

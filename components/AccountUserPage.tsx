@@ -2,6 +2,7 @@ import React, { useEffect} from 'react';
 import { Button } from './ui/button';
 import { useSession } from 'next-auth/react';
 import Cart from './Cart';
+import OrderSection from './OrderSection';
 
 const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
   const { data: session, status } = useSession(); // Use useSession to get session data
@@ -35,8 +36,8 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
 
       <div className='flex flex-row mt-10 w-[100vw] justify-evenly'>
         <div>
-          <h1 className='text-3xl mb-3'>Orders</h1>
-          <p>Orders will be displayed here</p>
+          <h1 className='text-3xl mb-3'>Recent Orders</h1>
+          <OrderSection/>
         </div>
         <div>
           <h1 className='text-3xl mb-3'>Cart</h1>

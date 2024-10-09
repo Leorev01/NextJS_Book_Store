@@ -34,8 +34,7 @@ const LoginForm = ({ switchForm, setUser}: Props) => {
         console.error('Error:', errorData.error);
       } else {
         console.log('User logged in successfully');
-        const responseData = await response.json();
-        const user = responseData.username;
+        const user = await response.json();
         localStorage.setItem('user', user);
         setUser(user);
       }

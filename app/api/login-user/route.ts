@@ -26,10 +26,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Incorrect password' }, { status: 401 });
     }
 
-    const username = user.username;
 
     // Respond with the user data (excluding password)
-    return NextResponse.json({ username }, { status: 200 });
+    return NextResponse.json({ user }, { status: 200 });
 
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

@@ -45,10 +45,26 @@ const RegisterForm = ({switchForm, setUser}: Props) => {
         const errorData = await response.json();
         console.error('Error:', errorData.error);
       } else {
-        console.log('User registered successfully');
-        localStorage.setItem('user', (username.current?.value as string));
+        try{
+          const userDetails = await fetch('http://localhost:3000/api/get-user', {
+            method: 'POST',
+              headers:{
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email.current?.value.trim()
+              })
+          })
+          const user = await userDetails.json();
+          console.log('User registered successfully');
+          localStorage.setItem('user', user);
+          
+          setUser(user);
+        }
+        catch(error){
+          console.log(error)
+        }
         
-        setUser(username.current?.value as string);
       }
     } catch (error) {
       console.error('Fetch error:', error);

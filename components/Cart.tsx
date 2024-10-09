@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import CartItem from './CartItem';
 import { Button } from './ui/button';
 import Link from 'next/link';
-import { DialogClose } from './ui/dialog';
+import { DialogClose} from './ui/dialog';
 
 const Cart = ({profile}:{profile: boolean}) => {
 
@@ -26,7 +26,6 @@ const Cart = ({profile}:{profile: boolean}) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            {!profile && <h1 className='self-center text-xl font-bold'>Cart</h1>}
             <ul className='flex flex-col gap-2'>
                 {cart.map((item) => (
                     <CartItem key={item.id} item={item} profile={profile}/>
@@ -35,7 +34,7 @@ const Cart = ({profile}:{profile: boolean}) => {
             <p className='self-center font-semibold'>Total: £{cartTotal.toFixed(2)}</p>
             <div className='flex justify-around'>
                 <Button onClick={clearCart}>Clear</Button>
-                {!profile && <Link href='/checkout'><DialogClose><Button>Checkout</Button></DialogClose></Link>}
+                {!profile && <Link href='/checkout'><DialogClose asChild><Button>Checkout</Button></DialogClose></Link>}
                 {profile && <Link href='/checkout'><Button>Checkout</Button></Link>}
             </div>
         </div>

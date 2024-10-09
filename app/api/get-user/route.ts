@@ -3,13 +3,13 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { username } = await request.json(); // Destructure the username directly
-    if (!username) {
+    const { email } = await request.json(); // Destructure the username directly
+    if (!email) {
       return NextResponse.json({ error: 'Missing credentials' }, { status: 400 });
     }
 
     // Query the database for the user by username
-    const dbResult = await sql`SELECT * FROM users WHERE username = ${username};`;
+    const dbResult = await sql`SELECT * FROM users WHERE email = ${email};`;
     const user = dbResult.rows[0]; // Get the first result (if any)
 
     if (!user) {

@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle
 } from "@/components/ui/dialog"
 import Cart from "./Cart";
 import SearchBar from "./SearchBar";
@@ -63,6 +64,7 @@ const Navbar = () => {
         </div>
       </nav>
       <DialogContent className="bg-white">
+      <DialogTitle className='self-center text-xl font-bold'>Cart</DialogTitle>
         <Cart profile={false}/>
       </DialogContent>
     </Dialog>
