@@ -37,10 +37,10 @@ const CheckoutPage = () => {
 
     // Handle redirection if the user is not authenticated
     useEffect(() => {
-        if (status === "unauthenticated") {
+        if (status === "unauthenticated" && !user) {
             router.push('/account');
         }
-    }, [status, router]);
+    }, [status, router, user]);
 
     const submitHandler = async (event: React.FormEvent) => {
         event.preventDefault();
