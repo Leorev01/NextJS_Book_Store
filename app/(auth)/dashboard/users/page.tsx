@@ -27,7 +27,6 @@ const UsersPage = () => {
             try{
                 const response = await fetch('http://localhost:3000/api/get-all-users');
                 const userList = await response.json();
-                console.log(userList)
                 setUsers(userList.users);
             }catch(error){
                 console.log(error)
@@ -36,6 +35,12 @@ const UsersPage = () => {
 
         getUsers()
     }, [])
+
+    if(users.length === 0){
+        return (
+            <h1>No users yet</h1>
+        )
+    }
 
   return (
     <div>
