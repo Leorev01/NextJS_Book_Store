@@ -4,6 +4,7 @@ import { Label } from './ui/label'
 import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
+import { message } from 'antd';
 
 type Props = {
   switchForm: () => void;
@@ -60,14 +61,17 @@ const RegisterForm = ({switchForm, setUser}: Props) => {
           localStorage.setItem('user', user);
           
           setUser(user);
+          message.success("Registration successful");
         }
         catch(error){
           console.log(error)
+          message.error("Registration failed. Please try again.");
         }
         
       }
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.log(error)
+      message.error("Registration failed. Please try again.");
     }
   };
   

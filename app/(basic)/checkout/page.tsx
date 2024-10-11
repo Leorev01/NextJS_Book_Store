@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { message } from "antd";
 
 type ItemProp = {
     id: number;
@@ -75,16 +76,18 @@ const CheckoutPage = () => {
 
                 if (request.ok) {
                     cartContext?.clearCart();
-                    alert('Order created successfully');
+                    message.success('Order created succesfully!');
                     router.push('/');
                 } else {
-                    alert("Something went wrong");
+                    message.error("Something went wrong");
                 }
             } catch (error) {
                 console.log(error);
+                message.error("Order could not be processed")
             }
         } catch (error) {
             console.log(error);
+            message.error("Order could not be processed")
         } finally {
             setIsSubmitting(false); // Reset submitting state
         }

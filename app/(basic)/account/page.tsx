@@ -6,6 +6,7 @@ import AccountUserPage from "@/components/AccountUserPage";
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { PacmanLoader } from "react-spinners";
+import { message } from "antd";
 
 const AccountPage = () => {
   const { data: session, status } = useSession();
@@ -26,6 +27,7 @@ const AccountPage = () => {
     if(session){
       signOut(); // Sign out of next-auth
     }
+    message.success('Logged out successfully!');
   };
 
   // Show loading spinner while waiting for session status

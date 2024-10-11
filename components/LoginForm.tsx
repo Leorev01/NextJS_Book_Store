@@ -4,6 +4,7 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
+import { message } from 'antd';
 
 
 type Props = {
@@ -37,8 +38,10 @@ const LoginForm = ({ switchForm, setUser}: Props) => {
         const user = await response.json();
         localStorage.setItem('user', user);
         setUser(user);
+        message.success('Logged in successfully');
       }
     } catch (error) {
+      message.error('Login failed');
       console.log(error);
     }
   };
