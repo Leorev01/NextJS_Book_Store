@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "BookBuy",
   description: "The worlds #1 book retailer",
   icons: {
-    icon: '/images/bookbuy_icon.png',
+    icon: '/images/bookbuy_logo.png',
   }
 };
 

@@ -18,7 +18,11 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
 
   // Show loading indicator while fetching user details
   if (!userDetails) {
-    return <div>User not found</div>; // Customize this loading indicator as needed
+    console.log(session);
+    return <div>
+        <Button className='w-min self-center' onClick={handleLogout}>Logout</Button>
+        <p>User not found</p>
+      </div>; // Customize this loading indicator as needed
   }
 
 

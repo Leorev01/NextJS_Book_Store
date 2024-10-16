@@ -8,7 +8,7 @@ const GoogleLoginButton = () => {
 
   const handleLogin = async () => {
     const result = await signIn('google', { redirect: false }); // Prevent automatic redirection
-
+    
     if (result?.error) {
       // Handle login error
       message.error('Login failed. Please try again.');

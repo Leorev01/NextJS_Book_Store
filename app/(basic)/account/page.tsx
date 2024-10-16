@@ -15,7 +15,7 @@ const AccountPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch user from localStorage after the component mounts
-  useEffect(() => {
+  useEffect(() =>{
     const storedUser = localStorage.getItem('user');
     setUser(storedUser); // Set user directly from localStorage
     setIsLoading(false); // Set loading to false after fetching the user

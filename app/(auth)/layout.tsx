@@ -17,10 +17,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "BookBuy",
+  title: "DashBoard",
   description: "The world's #1 book retailer",
   icons: {
-    icon: '/images/bookbuy_icon.png',
+    icon: '/images/bookbuy_logo.png',
   }
 };
 

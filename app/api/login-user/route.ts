@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     }
 
     // Query the database for user details based on the email
-    const result = await sql`SELECT username, email, password FROM users WHERE email = ${email};`;
+    const result = await sql`SELECT username, email, password, role FROM users WHERE email = ${email};`;
     
     // Check if the user exists
     if (result.rows.length === 0) {
