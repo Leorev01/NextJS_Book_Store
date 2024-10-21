@@ -5,7 +5,6 @@ import { Input } from './ui/input';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
 import { message } from 'antd';
-import { signIn } from 'next-auth/react';
 
 type Props = {
   switchForm: () => void;
