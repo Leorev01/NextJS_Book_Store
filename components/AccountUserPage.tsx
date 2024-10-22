@@ -1,18 +1,10 @@
-import React, { useEffect} from 'react';
 import { Button } from './ui/button';
 import { useSession } from 'next-auth/react';
 import Cart from './Cart';
 import OrderSection from './OrderSection';
 
 const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
-  const { data: session, status } = useSession(); // Use useSession to get session data
-
-  useEffect(() => {
-    // Set loading to false immediately after getting the session
-    if (status !== 'loading') {
-    }
-    console.log(session);
-  }, [status]);
+  const { data: session } = useSession(); // Use useSession to get session data
 
   const userDetails = session?.user;
 

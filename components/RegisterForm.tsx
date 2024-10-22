@@ -1,3 +1,4 @@
+import { signIn } from 'next-auth/react'; // Import the signIn function
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -57,31 +58,23 @@ const RegisterForm = ({ switchForm, setUser }: Props) => {
         return;
       }
 
-      // Fetch the registered user's details
-      const userDetails = await fetch('http://localhost:3000/api/get-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: emailValue,
-        }),
+      // Automatically sign the user in after registration
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: emailValue,
+        password: passwordValue,
       });
 
-      if (!userDetails.ok) {
-        message.error("Failed to fetch user details. Try logging in.");
+      if (result?.error) {
+        message.error(result.error);
         return;
       }
 
-      const user = await userDetails.json();
-      console.log('User registered successfully');
-      
-      // Store user in localStorage and set the user state
-      localStorage.setItem('user', JSON.stringify(user));
-      setUser(user);
-      
       // Success message
-      message.success("Registration successful");
+      message.success("Registration and sign-in successful");
+      
+      // Update the user in the state (if needed)
+      setUser(usernameValue);
 
     } catch (error) {
       console.error("Error during registration", error);
