@@ -4,6 +4,7 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
+import {signIn} from 'next-auth/react';
 import { message } from 'antd';
 
 type Props = {
@@ -18,30 +19,18 @@ const LoginForm = ({ switchForm, setUser}: Props) => {
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:3000/api/login-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email.current?.value.trim(),
-          password: password.current?.value,
-        }),
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error:', errorData.error);
-      } else {
-        console.log('User logged in successfully');
-        const user = await response.json();
-        localStorage.setItem('user', user);
-        setUser(user);
-        message.success('Logged in successfully');
-      }
-    } catch (error) {
-      message.error('Login failed');
-      console.log(error);
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: email.current?.value,
+      password: password.current?.value,
+    })
+
+    if(result?.error){
+      message.error('Login Failed: '+result?.error)
+    }else{
+      message.success('Logged in succesfully');
+      setUser(email.current?.value || '');
+      localStorage.setItem('user', email.current?.value ?? '');
     }
   };
 

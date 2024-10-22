@@ -1,6 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { compare } from "bcrypt";
 import { sql } from '@vercel/postgres'; // Import your database client
 
 const handler = NextAuth({
@@ -26,54 +28,90 @@ const handler = NextAuth({
         },
       },
     }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("Invalid credentials");
+        }
+        const user = await sql`SELECT * FROM users WHERE email = ${credentials.email};`;
+        if (user.rows.length === 0) {
+          throw new Error("Invalid credentials");
+        }
+        const isPasswordCorrect = await compare(
+          credentials.password,
+          user.rows[0].password
+        );
+        if (!isPasswordCorrect) {
+          throw new Error("Invalid credentials");
+        }
+        return user.rows[0] as User;
+      },
+    })
   ],
 
   callbacks: {
-    async signIn({ user, account, profile }) {
-      console.log('Profile:', profile); // Log the profile object
-    
-      if (account!.provider === 'github') {
-        user.name = profile!.name; // Use GitHub login as username
-        user.email = profile!.email; // Use GitHub email
-      } else if (account!.provider === 'google') {
-        user.name = profile!.name; // Use Google name as username
-        user.email = profile!.email; // Use Google email
+    async signIn({ user, account, profile, credentials }) {
+      console.log('SignIn callback triggered:', { user, account, profile, credentials });
+  
+      // If signing in with GitHub or Google
+      if (account?.provider === 'github' || account?.provider === 'google') {
+        user.name = profile?.name || '';
+        user.email = profile?.email || '';
+  
+        try {
+          await sql`INSERT INTO users (username, email, accountType) VALUES (${user.name}, ${user.email}, ${'OAuth'}) ON CONFLICT (email) DO NOTHING;`;
+        } catch (error) {
+          console.error('Error inserting user into the database:', error);
+          return false;
+        }
+  
+        return true;
       }
-    
-      // Insert user into the database
-      try {
-        await sql`INSERT INTO users (username, email, accountType) VALUES (${user.name}, ${user.email}, ${'OAuth'}) ON CONFLICT (email) DO NOTHING;`;
-      } catch (error) {
-        console.error('Error inserting user into database:', error);
-        return false; // Return false to prevent sign-in if there's an error
+  
+      // For Credentials login (no OAuth provider)
+      if (account?.provider === 'credentials') {
+        // Fetch the user from the database
+        const dbUser = await sql`SELECT * FROM users WHERE email = ${credentials?.email as string};`;
+        if (!dbUser.rows.length) {
+          console.error('User not found in the database');
+          return false;
+        }
+  
+        user.name = dbUser.rows[0].username; // Use the name from the database
+        user.email = dbUser.rows[0].email;   // Use the email from the database
+  
+        return true; // Allow sign-in for credentials login
       }
-    
-      return true; // Allow sign-in
+  
+      return false;
     },
     
 
-    async jwt({ token, user, account, profile }) {
-      if (account && profile) {
-        token.provider = account.provider;
-        token.username = user.name; // Get username from user
-        token.email = user.email; // Get email from user
-      }
-      return token;
-    },
+   async jwt({ token, user, profile }) {
+    // If the user object is present (i.e., the user is signing in), store the user info in the token
+    if (user) {
+      token.username = user.name || profile?.name || ''; // Store the user's name in the token
+      token.email = user.email || profile?.email || '';   // Store the user's email in the token
+    }
+    
+    return token; // Return the updated token
+  },
 
-    async session({ session, token }) {
-      if (session && session.user) {
-        session.user.name = token.username as string; // Add username to session
-        session.user.email = token.email as string; // Add email to session
-      } else {
-        session.user = {
-          name: token.username as string || null,
-          email: token.email as string || null,
-        };
-      }
-
-      return session;
-    },
+  // session callback is called when a session is created or accessed
+  async session({ session, token }) {
+    // Add username and email from the token to the session object
+    if (session?.user) {
+      session.user.name = token.username as string; // Set the user's name in the session
+      session.user.email = token.email as string;   // Set the user's email in the session
+    }
+    
+    return session; // Return the updated session
+  },
   },
 
   session: {

@@ -11,6 +11,7 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
     // Set loading to false immediately after getting the session
     if (status !== 'loading') {
     }
+    console.log(session);
   }, [status]);
 
   const userDetails = session?.user;
@@ -18,7 +19,6 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
 
   // Show loading indicator while fetching user details
   if (!userDetails) {
-    console.log(session);
     return <div>
         <Button className='w-min self-center' onClick={handleLogout}>Logout</Button>
         <p>User not found</p>
@@ -33,7 +33,7 @@ const AccountUserPage = ({ handleLogout }: { handleLogout: () => void }) => {
       <div className='self-center flex flex-col mt-10 w-[20rem]'>
         <h1 className='text-3xl mb-3'>Profile</h1>
         {/*eslint-disable-next-line @next/next/no-img-element*/}
-        <img src={userDetails.image as string} alt={"profile image"} width={50} height={50} className='self-center'/>
+        {userDetails.image && <img src={userDetails.image as string} alt="profile image" width={50} height={50} className='self-center'/>}
         <p className='self-start'>Name: <strong>{userDetails.name}</strong></p>
         <p className='self-start'>Email: <strong>{userDetails.email}</strong></p>        
       </div>
