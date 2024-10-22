@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
@@ -9,10 +9,9 @@ import { message } from 'antd';
 
 type Props = {
   switchForm: () => void;
-  setUser: Dispatch<SetStateAction<string | null>>;
 };
 
-const LoginForm = ({ switchForm, setUser}: Props) => {
+const LoginForm = ({ switchForm }: Props) => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
@@ -29,7 +28,6 @@ const LoginForm = ({ switchForm, setUser}: Props) => {
       message.error('Login Failed: '+result?.error)
     }else{
       message.success('Logged in succesfully');
-      setUser(email.current?.value || '');
       localStorage.setItem('user', email.current?.value ?? '');
     }
   };

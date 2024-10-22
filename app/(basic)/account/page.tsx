@@ -10,20 +10,15 @@ import { message } from "antd";
 
 const AccountPage = () => {
   const { data: session, status } = useSession();
-  const [user, setUser] = useState<string | null>(null);
   const [register, setRegister] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch user from localStorage after the component mounts
   useEffect(() =>{
-    const storedUser = localStorage.getItem('user');
-    setUser(storedUser); // Set user directly from localStorage
     setIsLoading(false); // Set loading to false after fetching the user
-  }, [user]);
+  }, []);
 
   const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
     if(session){
       signOut(); // Sign out of next-auth
     }
@@ -40,7 +35,7 @@ const AccountPage = () => {
   }
 
   // Check if the user is authenticated
-  const isAuthenticated = user || (session && session.user);
+  const isAuthenticated = session && session.user;
 
   return (
     <section className='pt-[11rem] flex flex-col items-center'>
@@ -51,12 +46,10 @@ const AccountPage = () => {
           {register ? (
             <RegisterForm 
               switchForm={() => setRegister(false)} 
-              setUser={setUser} 
             />
           ) : (
             <LoginForm 
               switchForm={() => setRegister(true)} 
-              setUser={setUser} 
             />
           )}
         </>

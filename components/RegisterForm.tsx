@@ -2,17 +2,16 @@ import { signIn } from 'next-auth/react'; // Import the signIn function
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import GithubLoginButton from './GithubLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
 import { message } from 'antd';
 
 type Props = {
   switchForm: () => void;
-  setUser: Dispatch<SetStateAction<string | null>>;
 };
 
-const RegisterForm = ({ switchForm, setUser }: Props) => {
+const RegisterForm = ({ switchForm }: Props) => {
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -73,8 +72,6 @@ const RegisterForm = ({ switchForm, setUser }: Props) => {
       // Success message
       message.success("Registration and sign-in successful");
       
-      // Update the user in the state (if needed)
-      setUser(usernameValue);
 
     } catch (error) {
       console.error("Error during registration", error);
