@@ -10,6 +10,9 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
+import Action from "../../(components)/Action";
+import axios from "axios";
+import { BarLoader } from "react-spinners";
 
   type UserProp = {
     userId: string;
@@ -21,13 +24,23 @@ import {
 const UsersPage = () => {
 
     const [users, setUsers] = useState<UserProp[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getUsers = async () => {
             try{
-                const response = await fetch('http://localhost:3000/api/get-all-users');
-                const userList = await response.json();
+                const response = await axios.get('http://localhost:3000/api/get-all-users',
+                    {
+                            headers: {
+                            'Cache-Control': 'no-cache', // Prevent caching
+                        },
+                        params: {
+                            _t: new Date().getTime(), // Prevent browser cache by adding a timestamp
+                        },
+                    });
+                const userList = await response.data;
                 setUsers(userList.users);
+                setLoading(false);
             }catch(error){
                 console.log(error)
             }
@@ -35,6 +48,18 @@ const UsersPage = () => {
 
         getUsers()
     }, [])
+    
+    const handleDelete = (userId: string) => {
+        setUsers((prevUsers) => prevUsers.filter(user => user.userId !== userId));
+    };
+    
+    if(loading){
+        return(
+            <div className="flex items-center justify-center pt-5">
+                <BarLoader color="#36d7b7" />
+            </div>
+        )
+    }
 
     if(users.length === 0){
         return (
@@ -60,6 +85,7 @@ const UsersPage = () => {
                     <TableCell className="font-medium">{user.userId}</TableCell>
                     <TableCell>{user.username}</TableCell>
                     <TableCell>{user.email}</TableCell>
+                    <Action value={user.userId} onDelete={handleDelete} type='users'/>
                     </TableRow>
                 ))}
             </TableBody>

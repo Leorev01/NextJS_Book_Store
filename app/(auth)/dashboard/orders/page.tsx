@@ -12,6 +12,7 @@ import {
   } from "@/components/ui/table"
 import Action from "../../(components)/Action";
 import axios from "axios";
+import { BarLoader } from "react-spinners";
 
 type OrderProp = {
     orderId: string;
@@ -26,6 +27,7 @@ type OrderProp = {
 
 const OrderPage = () => {
     const [orders, setOrders] = useState<OrderProp[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
       const getOrders = async () => {
@@ -40,6 +42,7 @@ const OrderPage = () => {
           });
           const orderList = response.data;
           setOrders(orderList.orders); // Set the orders to the latest fetched list
+          setLoading(false);
         } catch (error) {
             console.error('Error fetching orders:', error);
         }
@@ -52,6 +55,14 @@ const OrderPage = () => {
      const handleDelete = (orderId: string) => {
       setOrders((prevOrders) => prevOrders.filter(order => order.orderId !== orderId));
     };
+
+    if(loading){
+      return(
+          <div className="flex items-center justify-center pt-5">
+              <BarLoader color="#36d7b7" />
+          </div>
+      )
+    }
 
     if (orders.length === 0) {
         return <h1>No orders yet</h1>;
@@ -90,7 +101,7 @@ const OrderPage = () => {
                                 <TableCell>{order.status}</TableCell>
                                 <TableCell>{order.totalamount}</TableCell>
                                 <TableCell>
-                                    <Action value={order.orderId} onDelete={handleDelete} />
+                                    <Action value={order.orderId} onDelete={handleDelete} type='orders'/>
                                 </TableCell>
                             </TableRow>
                         );
