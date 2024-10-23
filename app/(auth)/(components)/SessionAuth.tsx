@@ -52,7 +52,7 @@ export default function SessionAuth({ children }: { children: React.ReactNode })
     }
 
     if (status === 'unauthenticated') {
-      router.push('/login'); // Redirect to login if unauthenticated
+      router.push('/account'); // Redirect to login if unauthenticated
     } else if (userRole !== null) {
       router.push('/'); // Redirect if not an admin
     }
